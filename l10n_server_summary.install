@@ -1,0 +1,49 @@
+<?php
+
+/**
+ * Implements hook_install()
+ */
+function l10n_server_summary_install() {
+  drupal_install_schema('l10n_server_summary');
+}
+
+/*
+ * Implements hook_schema()
+ */
+function l10n_server_summary_schema() {
+  $schema = array();
+  $schema['l10n_server_summary_projects'] = array(
+    'description' => 'Stores recommended version per project and core version',
+    'fields' => array(
+      'id' => array(
+        'type' => 'serial',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ),
+      'pid' => array(
+        'description' => 'Stores the project id, see {l10n_server_project}.pid',
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+        'default' => 0
+      ),
+      'core' => array(
+        'description' => 'Stores the core version of this recommended release',
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+        'default' => 0
+      ),
+      'rid' => array(
+        'description' => 'Stores the project release, which is recommended, see {l10n_server_release}.rid',
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+        'default' => 0
+      ),
+    ),
+    'primary key' => array('id'),
+  );
+
+  return $schema;
+}

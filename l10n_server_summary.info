@@ -1,0 +1,6 @@
+name = Localization server summary
+description = Provides a good summary per server summary
+core = 6.x
+
+dependencies[] = update_feed_api
+dependencies[] = views

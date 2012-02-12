@@ -1,0 +1,21 @@
+<?php
+
+/**
+ * Implements hook_views_api()
+ */
+function l10n_server_summary_views_api() {
+  return array(
+    'api' => 2.0,
+  );
+}
+
+/**
+ * Returns all potx string types.
+ */
+function l10n_server_summary_potx_string_types() {
+  return array(
+    POTX_STRING_INSTALLER => t('Potx string installer'),
+    POTX_STRING_RUNTIME => t('Potx string runtime'),
+    POTX_STRING_BOTH => t('Potx string both'),
+  );
+}
