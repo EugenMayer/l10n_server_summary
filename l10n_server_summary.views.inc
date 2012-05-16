@@ -237,7 +237,6 @@ function l10n_server_summary_views_data_line(&$data) {
     ),
   );
   // @TODO: fid
-  // @TODO: lineno
   $line_data['lineno'] = array(
     'title' => t('Line number'),
     'help' => t('no idea'),
