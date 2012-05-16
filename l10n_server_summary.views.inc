@@ -245,13 +245,13 @@ function l10n_server_summary_views_data_line(&$data) {
       'click sortable' => TRUE,
     ),
     'argument' => array(
-      'handler' => 'views_handler_argument_string',
+      'handler' => 'views_handler_argument_numeric',
       'name field' => 'title',
       'numeric' => TRUE,
       'validate type' => 'nid',
     ),
     'filter' => array(
-      'handler' => 'views_handler_filter_string',
+      'handler' => 'views_handler_filter_numeric',
     ),
     'sort' => array(
       'handler' => 'views_handler_sort',
