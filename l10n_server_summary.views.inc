@@ -238,6 +238,27 @@ function l10n_server_summary_views_data_line(&$data) {
   );
   // @TODO: fid
   // @TODO: lineno
+  $line_data['lineno'] = array(
+    'title' => t('Line number'),
+    'help' => t('no idea'),
+    'field' => array(
+      'handler' => 'views_handler_field',
+      'click sortable' => TRUE,
+    ),
+    'argument' => array(
+      'handler' => 'views_handler_argument_string',
+      'name field' => 'title',
+      'numeric' => TRUE,
+      'validate type' => 'nid',
+    ),
+    'filter' => array(
+      'handler' => 'views_handler_filter_string',
+    ),
+    'sort' => array(
+      'handler' => 'views_handler_sort',
+    ),
+  );
+
   // type
   $line_data['type'] = array(
     'title' => t('Line type'),
