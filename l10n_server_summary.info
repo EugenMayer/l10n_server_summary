@@ -6,3 +6,4 @@ dependencies[] = update_feed_api
 dependencies[] = views
 ; TODO: should this really be a dependency, but it's needed quite often on the views.
 dependencies[] = views_field_view
+dependencies[] = dbtng
