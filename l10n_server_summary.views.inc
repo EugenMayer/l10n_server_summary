@@ -340,6 +340,7 @@ function l10n_server_summary_views_data_release(&$data) {
     ),
   );
 
+  // @todo: this should be part of ufa.
   // join to ufa_releases
   $release_data['ufa_releases'] = array(
     'title' => t('Update feed api release'),
