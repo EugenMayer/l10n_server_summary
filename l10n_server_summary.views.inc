@@ -364,6 +364,15 @@ function l10n_server_summary_views_data_release(&$data) {
       'relationship field' => 'rid'
     ),
   );
+
+  // Has untranslated strings.
+  $release_data['untranslated_strings'] = array(
+    'title' => t('Untranslated strings'),
+    'help' => t('Get information about the amount of untranslated strings'),
+    'filter' => array(
+      'handler' => 'l10n_server_summary_handler_filter_l10n_release_untranslated_strings',
+    ),
+  );
 }
 
   /**
@@ -524,6 +533,22 @@ function l10n_server_summary_views_data_status_flag(&$data) {
     ),
     'sort' => array(
       'handler' => 'views_handler_sort',
+    ),
+  );
+}
+
+/**
+ * Implements hook_views_handlers().
+ */
+function l10n_server_summary_views_handlers() {
+  return array(
+    'info' => array(
+      'path' => drupal_get_path('module', 'l10n_server_summary') . '/handlers',
+    ),
+    'handlers' => array(
+      'l10n_server_summary_handler_filter_l10n_release_untranslated_strings' => array(
+        'parent' => 'views_handler_filter_boolean_operator',
+      )
     ),
   );
 }
