@@ -181,6 +181,19 @@ function l10n_server_summary_views_data_project(&$data) {
       'relationship field' => 'pid',
     ),
   );
+
+  // @todo: this should be part of ufa.
+  // join to ufa_projects
+  $project_data['ufa_project'] = array(
+    'title' => t('Update feed api project'),
+    'help' => '',
+    'relationship' => array(
+      'label' => t('Ufa project'),
+      'base' => 'update_feed_api_projects',
+      'base field' => 'short_name',
+      'relationship field' => 'title',
+    ),
+  );
 }
 
 /**
@@ -346,19 +359,6 @@ function l10n_server_summary_views_data_release(&$data) {
       'base' => 'l10n_server_project',
       'base field' => 'pid',
       'relationship field' => 'pid',
-    ),
-  );
-
-  // @todo: this should be part of ufa.
-  // join to ufa_releases
-  $release_data['ufa_releases'] = array(
-    'title' => t('Update feed api release'),
-    'help' => '',
-    'relationship' => array(
-      'label' => t('Ufa release'),
-      'base' => 'update_feed_api_releases',
-      'base field' => 'version',
-      'relationship field' => 'title',
     ),
   );
 
@@ -561,6 +561,35 @@ function l10n_server_summary_views_handlers() {
       'l10n_server_summary_handler_filter_line_lineno_max' => array(
         'parent' => 'views_handler_filter',
       ),
+      'l10n_server_summary_handler_relationship_10n_server_release_ufa_release' => array(
+        'parent' => 'views_handler_relationship',
+      ),
+    ),
+  );
+}
+
+/**
+ * Implements hook_views_data_alter().
+ */
+function l10n_server_summary_views_data_alter(&$data) {
+
+  $data['update_feed_api_releases']['l10n_server_release'] = array(
+    'title' => t('l10n server release'),
+    'help' => '',
+    'relationship' => array(
+      'label' => t('l10n server release'),
+      'base' => 'l10n_server_release',
+      'base field' => 'title',
+      'relationship field' => 'version',
+      'handler' => 'l10n_server_summary_handler_relationship_10n_server_release_ufa_release',
+      'join handler' => 'l10n_server_summary_join',
+      'extra' => array(
+        array(
+          'field' => 'pid',
+          'value' => "l10n_server_project.pid",
+          'raw' => TRUE,
+        )
+       ),
     ),
   );
 }
