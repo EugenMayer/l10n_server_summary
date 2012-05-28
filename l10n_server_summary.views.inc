@@ -258,6 +258,15 @@ function l10n_server_summary_views_data_line(&$data) {
     ),
   );
 
+  $line_data['lineno_max'] = array(
+    'title' => t('Maximum line number'),
+    'help' => t('TODO'),
+    'real field' => 'lineno',
+    'filter' => array(
+      'handler' => 'l10n_server_summary_handler_filter_line_lineno_max',
+    ),
+  );
+
   // type
   $line_data['type'] = array(
     'title' => t('Line type'),
@@ -548,7 +557,10 @@ function l10n_server_summary_views_handlers() {
     'handlers' => array(
       'l10n_server_summary_handler_filter_l10n_release_untranslated_strings' => array(
         'parent' => 'views_handler_filter_boolean_operator',
-      )
+      ),
+      'l10n_server_summary_handler_filter_line_lineno_max' => array(
+        'parent' => 'views_handler_filter',
+      ),
     ),
   );
 }
