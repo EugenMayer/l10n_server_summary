@@ -31,7 +31,10 @@ class l10n_server_summary_handler_filter_l10n_release_untranslated_strings exten
     $inner_line_alias = $sub_query->innerJoin('l10n_server_line', 'l10n_server_line' . $inner_suffix, "$inner_string_alias.sid = %alias.sid");
     $inner_flag_alias = $sub_query->innerJoin('l10n_server_status_flag', 'l10n_server_status_flag' . $inner_suffix, "$inner_line_alias.sid = %alias.sid");
 
-    $sub_query->condition("$inner_flag_alias.has_suggestion", 1);
+    $or = db_or();
+    $or->condition("$inner_flag_alias.has_translation", 0);
+    $or->isNull("$inner_flag_alias.sid");
+    $sub_query->condition($or);
     $sub_query->where("$inner_line_alias.rid = $rid_field");
     $sub_query_string = (string) $sub_query;
 
