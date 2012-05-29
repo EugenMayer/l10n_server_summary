@@ -29,7 +29,7 @@ class l10n_server_summary_handler_filter_l10n_release_untranslated_strings exten
     $sub_query = db_select('l10n_server_string', $inner_string_alias);
     $sub_query->addExpression("COUNT(DISTINCT($inner_string_alias.sid))");
     $inner_line_alias = $sub_query->innerJoin('l10n_server_line', 'l10n_server_line' . $inner_suffix, "$inner_string_alias.sid = %alias.sid");
-    $inner_flag_alias = $sub_query->innerJoin('l10n_server_status_flag', 'l10n_server_status_flag' . $inner_suffix, "$inner_line_alias.sid = %alias.sid");
+    $inner_flag_alias = $sub_query->leftJoin('l10n_server_status_flag', 'l10n_server_status_flag' . $inner_suffix, "$inner_line_alias.sid = %alias.sid");
 
     $or = db_or();
     $or->condition("$inner_flag_alias.has_translation", 0);
