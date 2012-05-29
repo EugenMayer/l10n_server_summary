@@ -52,14 +52,14 @@ function _l10n_server_summary_projects() {
   $handler->display->display_options['relationships']['ufa_project']['id'] = 'ufa_project';
   $handler->display->display_options['relationships']['ufa_project']['table'] = 'l10n_server_project';
   $handler->display->display_options['relationships']['ufa_project']['field'] = 'ufa_project';
-  $handler->display->display_options['relationships']['ufa_project']['required'] = 1;
+  $handler->display->display_options['relationships']['ufa_project']['required'] = 0;
   /* Relationship: ufa Projects: Release */
   $handler->display->display_options['relationships']['pid']['id'] = 'pid';
   $handler->display->display_options['relationships']['pid']['table'] = 'update_feed_api_projects';
   $handler->display->display_options['relationships']['pid']['field'] = 'pid';
   $handler->display->display_options['relationships']['pid']['relationship'] = 'ufa_project';
   $handler->display->display_options['relationships']['pid']['label'] = 'ufa release';
-  $handler->display->display_options['relationships']['pid']['required'] = 1;
+  $handler->display->display_options['relationships']['pid']['required'] = 0;
   /* Relationship: ufa Releases: l10n server release */
   $handler->display->display_options['relationships']['l10n_server_release_1']['id'] = 'l10n_server_release_1';
   $handler->display->display_options['relationships']['l10n_server_release_1']['table'] = 'update_feed_api_releases';
@@ -267,13 +267,12 @@ function _l10n_server_summary_projects() {
   $handler->display->display_options['filters']['untranslated_strings']['table'] = 'l10n_server_release';
   $handler->display->display_options['filters']['untranslated_strings']['field'] = 'untranslated_strings';
   $handler->display->display_options['filters']['untranslated_strings']['relationship'] = 'l10n_server_release_1';
-  $handler->display->display_options['filters']['untranslated_strings']['value'] = '1';
+  $handler->display->display_options['filters']['untranslated_strings']['value'] = 'All';
   $handler->display->display_options['filters']['untranslated_strings']['exposed'] = TRUE;
   $handler->display->display_options['filters']['untranslated_strings']['expose']['limit_operators'] = array();
   $handler->display->display_options['filters']['untranslated_strings']['expose']['label'] = 'Not fully translated';
   $handler->display->display_options['filters']['untranslated_strings']['expose']['use_operator'] = FALSE;
   $handler->display->display_options['filters']['untranslated_strings']['expose']['identifier'] = 'untranslated_strings';
-  $handler->display->display_options['filters']['untranslated_strings']['expose']['optional'] = 0;
   $handler->display->display_options['filters']['untranslated_strings']['expose']['single'] = TRUE;
   /* Filter: ufa Releases: Is latest recommended */
   $handler->display->display_options['filters']['is_latest_recommended']['id'] = 'is_latest_recommended';
@@ -281,6 +280,12 @@ function _l10n_server_summary_projects() {
   $handler->display->display_options['filters']['is_latest_recommended']['field'] = 'is_latest_recommended';
   $handler->display->display_options['filters']['is_latest_recommended']['relationship'] = 'pid';
   $handler->display->display_options['filters']['is_latest_recommended']['value'] = '1';
+  $handler->display->display_options['filters']['is_latest_recommended']['expose']['label'] = 'True';
+  $handler->display->display_options['filters']['is_latest_recommended']['expose']['use_operator'] = FALSE;
+  $handler->display->display_options['filters']['is_latest_recommended']['expose']['identifier'] = 'is_latest_recommended';
+  $handler->display->display_options['filters']['is_latest_recommended']['expose']['optional'] = FALSE;
+  $handler->display->display_options['filters']['is_latest_recommended']['expose']['remember'] = FALSE;
+  $handler->display->display_options['filters']['is_latest_recommended']['expose']['single'] = TRUE;
   $translatables['projects'] = array(
     t('Defaults'),
     t('more'),
@@ -308,6 +313,7 @@ function _l10n_server_summary_projects() {
     t('Translation stats'),
     t('[view_1]/[view_2]'),
     t('Not fully translated'),
+    t('True'),
   );
 
   return $view;
@@ -540,7 +546,7 @@ function _l10n_server_summary_releases() {
     t('ufa Projects: short_name'),
     t('Untranslated'),
   );
-
+  return $view;
 }
 
 function _l10n_server_summary_translateable_strings() {
