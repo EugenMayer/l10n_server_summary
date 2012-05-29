@@ -163,7 +163,6 @@ function _l10n_server_summary_projects() {
   $handler->display->display_options['fields']['rid']['table'] = 'l10n_server_release';
   $handler->display->display_options['fields']['rid']['field'] = 'rid';
   $handler->display->display_options['fields']['rid']['relationship'] = 'l10n_server_release_1';
-  $handler->display->display_options['fields']['rid']['exclude'] = TRUE;
   $handler->display->display_options['fields']['rid']['alter']['alter_text'] = 0;
   $handler->display->display_options['fields']['rid']['alter']['make_link'] = 0;
   $handler->display->display_options['fields']['rid']['alter']['absolute'] = 0;
@@ -182,18 +181,6 @@ function _l10n_server_summary_projects() {
   $handler->display->display_options['fields']['rid']['empty_zero'] = 0;
   $handler->display->display_options['fields']['rid']['hide_alter_empty'] = 1;
   $handler->display->display_options['fields']['rid']['format_plural'] = 0;
-  /* Field: Suggestions */
-  $handler->display->display_options['fields']['view']['id'] = 'view';
-  $handler->display->display_options['fields']['view']['table'] = 'views';
-  $handler->display->display_options['fields']['view']['field'] = 'view';
-  $handler->display->display_options['fields']['view']['ui_name'] = 'Suggestions';
-  $handler->display->display_options['fields']['view']['element_label_colon'] = 1;
-  $handler->display->display_options['fields']['view']['element_default_classes'] = 1;
-  $handler->display->display_options['fields']['view']['hide_empty'] = 0;
-  $handler->display->display_options['fields']['view']['empty_zero'] = 0;
-  $handler->display->display_options['fields']['view']['hide_alter_empty'] = 1;
-  $handler->display->display_options['fields']['view']['view'] = 'suggestions';
-  $handler->display->display_options['fields']['view']['arguments'] = '[rid]';
   /* Field: Overall translateable strings */
   $handler->display->display_options['fields']['view_2']['id'] = 'view_2';
   $handler->display->display_options['fields']['view_2']['table'] = 'views';
@@ -307,7 +294,6 @@ function _l10n_server_summary_projects() {
     t('api_version'),
     t('Rec. Major'),
     t('Rid'),
-    t('View'),
     t('Overall translateable strings'),
     t('Strings need translation'),
     t('Translation stats'),
@@ -588,12 +574,6 @@ function _l10n_server_summary_translateable_strings() {
   $handler->display->display_options['relationships']['sid']['field'] = 'sid';
   $handler->display->display_options['relationships']['sid']['relationship'] = 'l10n_server_line';
   $handler->display->display_options['relationships']['sid']['required'] = 0;
-  /* Relationship: l10n server string: Status flags */
-  $handler->display->display_options['relationships']['l10n_server_status_flag']['id'] = 'l10n_server_status_flag';
-  $handler->display->display_options['relationships']['l10n_server_status_flag']['table'] = 'l10n_server_string';
-  $handler->display->display_options['relationships']['l10n_server_status_flag']['field'] = 'l10n_server_status_flag';
-  $handler->display->display_options['relationships']['l10n_server_status_flag']['relationship'] = 'sid';
-  $handler->display->display_options['relationships']['l10n_server_status_flag']['required'] = 1;
   /* Field: l10n server string: Sid */
   $handler->display->display_options['fields']['sid']['id'] = 'sid';
   $handler->display->display_options['fields']['sid']['table'] = 'l10n_server_string';
@@ -645,7 +625,6 @@ function _l10n_server_summary_translateable_strings() {
     t('l10n server release'),
     t('l10n server line'),
     t('sid'),
-    t('Status flags'),
     t('.'),
     t(','),
     t('All'),
