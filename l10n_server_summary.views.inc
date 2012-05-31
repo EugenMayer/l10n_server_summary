@@ -528,7 +528,7 @@ function l10n_server_summary_views_data_status_flag(&$data) {
 
   // has_translation
   $status_data['has_translation'] = array(
-    'title' => t('Has translations'),
+    'title' => t('Has translation'),
     'help' => t('Does this string has a translation.'),
     'field' => array(
       'handler' => 'views_handler_field_boolean',
@@ -548,6 +548,7 @@ function l10n_server_summary_views_data_status_flag(&$data) {
 
 /**
  * Implements hook_views_handlers().
+ * @return array
  */
 function l10n_server_summary_views_handlers() {
   return array(
@@ -570,6 +571,7 @@ function l10n_server_summary_views_handlers() {
 
 /**
  * Implements hook_views_data_alter().
+ * @param $data
  */
 function l10n_server_summary_views_data_alter(&$data) {
 

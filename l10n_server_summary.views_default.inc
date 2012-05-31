@@ -13,11 +13,16 @@ function _l10n_server_summary_projects() {
 
   /* Display: Defaults */
   $handler = $view->new_display('default', 'Defaults', 'default');
+  $handler->display->display_options['group_by'] = TRUE;
   $handler->display->display_options['access']['type'] = 'none';
   $handler->display->display_options['cache']['type'] = 'none';
   $handler->display->display_options['query']['type'] = 'views_query';
   $handler->display->display_options['exposed_form']['type'] = 'basic';
   $handler->display->display_options['pager']['type'] = 'full';
+  $handler->display->display_options['pager']['options']['items_per_page'] = '40';
+  $handler->display->display_options['pager']['options']['offset'] = '0';
+  $handler->display->display_options['pager']['options']['id'] = '0';
+  $handler->display->display_options['pager']['options']['expose']['items_per_page_options_all'] = 0;
   $handler->display->display_options['style_plugin'] = 'table';
   $handler->display->display_options['style_options']['columns'] = array(
     'short_name' => 'short_name',
@@ -70,11 +75,12 @@ function _l10n_server_summary_projects() {
   $handler->display->display_options['fields']['short_name']['id'] = 'short_name';
   $handler->display->display_options['fields']['short_name']['table'] = 'update_feed_api_projects';
   $handler->display->display_options['fields']['short_name']['field'] = 'short_name';
-  $handler->display->display_options['fields']['short_name']['relationship'] = 'pid';
+  $handler->display->display_options['fields']['short_name']['relationship'] = 'ufa_project';
   $handler->display->display_options['fields']['short_name']['label'] = 'Project';
+  $handler->display->display_options['fields']['short_name']['exclude'] = TRUE;
   $handler->display->display_options['fields']['short_name']['alter']['alter_text'] = 0;
   $handler->display->display_options['fields']['short_name']['alter']['make_link'] = 0;
-  $handler->display->display_options['fields']['short_name']['alter']['absolute'] = 0;
+  $handler->display->display_options['fields']['short_name']['alter']['absolute'] = 1;
   $handler->display->display_options['fields']['short_name']['alter']['external'] = 0;
   $handler->display->display_options['fields']['short_name']['alter']['replace_spaces'] = 0;
   $handler->display->display_options['fields']['short_name']['alter']['trim_whitespace'] = 0;
@@ -139,8 +145,9 @@ function _l10n_server_summary_projects() {
   $handler->display->display_options['fields']['recommended_major']['id'] = 'recommended_major';
   $handler->display->display_options['fields']['recommended_major']['table'] = 'update_feed_api_projects';
   $handler->display->display_options['fields']['recommended_major']['field'] = 'recommended_major';
-  $handler->display->display_options['fields']['recommended_major']['relationship'] = 'pid';
+  $handler->display->display_options['fields']['recommended_major']['relationship'] = 'ufa_project';
   $handler->display->display_options['fields']['recommended_major']['label'] = 'Rec. Major';
+  $handler->display->display_options['fields']['recommended_major']['exclude'] = TRUE;
   $handler->display->display_options['fields']['recommended_major']['alter']['alter_text'] = 0;
   $handler->display->display_options['fields']['recommended_major']['alter']['make_link'] = 0;
   $handler->display->display_options['fields']['recommended_major']['alter']['absolute'] = 0;
@@ -163,6 +170,7 @@ function _l10n_server_summary_projects() {
   $handler->display->display_options['fields']['rid']['table'] = 'l10n_server_release';
   $handler->display->display_options['fields']['rid']['field'] = 'rid';
   $handler->display->display_options['fields']['rid']['relationship'] = 'l10n_server_release_1';
+  $handler->display->display_options['fields']['rid']['exclude'] = TRUE;
   $handler->display->display_options['fields']['rid']['alter']['alter_text'] = 0;
   $handler->display->display_options['fields']['rid']['alter']['make_link'] = 0;
   $handler->display->display_options['fields']['rid']['alter']['absolute'] = 0;
@@ -180,7 +188,31 @@ function _l10n_server_summary_projects() {
   $handler->display->display_options['fields']['rid']['hide_empty'] = 0;
   $handler->display->display_options['fields']['rid']['empty_zero'] = 0;
   $handler->display->display_options['fields']['rid']['hide_alter_empty'] = 1;
+  $handler->display->display_options['fields']['rid']['separator'] = '';
   $handler->display->display_options['fields']['rid']['format_plural'] = 0;
+  /* Field: ufa Projects: short_name */
+  $handler->display->display_options['fields']['short_name_1']['id'] = 'short_name_1';
+  $handler->display->display_options['fields']['short_name_1']['table'] = 'update_feed_api_projects';
+  $handler->display->display_options['fields']['short_name_1']['field'] = 'short_name';
+  $handler->display->display_options['fields']['short_name_1']['relationship'] = 'ufa_project';
+  $handler->display->display_options['fields']['short_name_1']['alter']['alter_text'] = 0;
+  $handler->display->display_options['fields']['short_name_1']['alter']['make_link'] = 1;
+  $handler->display->display_options['fields']['short_name_1']['alter']['path'] = 'translate/languages/de/translate?project=[short_name]&status=1&release=[rid]';
+  $handler->display->display_options['fields']['short_name_1']['alter']['absolute'] = 1;
+  $handler->display->display_options['fields']['short_name_1']['alter']['external'] = 0;
+  $handler->display->display_options['fields']['short_name_1']['alter']['replace_spaces'] = 0;
+  $handler->display->display_options['fields']['short_name_1']['alter']['trim_whitespace'] = 0;
+  $handler->display->display_options['fields']['short_name_1']['alter']['nl2br'] = 0;
+  $handler->display->display_options['fields']['short_name_1']['alter']['word_boundary'] = 1;
+  $handler->display->display_options['fields']['short_name_1']['alter']['ellipsis'] = 1;
+  $handler->display->display_options['fields']['short_name_1']['alter']['strip_tags'] = 0;
+  $handler->display->display_options['fields']['short_name_1']['alter']['trim'] = 0;
+  $handler->display->display_options['fields']['short_name_1']['alter']['html'] = 0;
+  $handler->display->display_options['fields']['short_name_1']['element_label_colon'] = 1;
+  $handler->display->display_options['fields']['short_name_1']['element_default_classes'] = 1;
+  $handler->display->display_options['fields']['short_name_1']['hide_empty'] = 0;
+  $handler->display->display_options['fields']['short_name_1']['empty_zero'] = 0;
+  $handler->display->display_options['fields']['short_name_1']['hide_alter_empty'] = 1;
   /* Field: Overall translateable strings */
   $handler->display->display_options['fields']['view_2']['id'] = 'view_2';
   $handler->display->display_options['fields']['view_2']['table'] = 'views';
@@ -235,6 +267,33 @@ function _l10n_server_summary_projects() {
   $handler->display->display_options['fields']['nothing']['hide_empty'] = 0;
   $handler->display->display_options['fields']['nothing']['empty_zero'] = 0;
   $handler->display->display_options['fields']['nothing']['hide_alter_empty'] = 0;
+  /* Field: ufa Releases: version */
+  $handler->display->display_options['fields']['version']['id'] = 'version';
+  $handler->display->display_options['fields']['version']['table'] = 'update_feed_api_releases';
+  $handler->display->display_options['fields']['version']['field'] = 'version';
+  $handler->display->display_options['fields']['version']['relationship'] = 'pid';
+  $handler->display->display_options['fields']['version']['alter']['alter_text'] = 0;
+  $handler->display->display_options['fields']['version']['alter']['make_link'] = 0;
+  $handler->display->display_options['fields']['version']['alter']['absolute'] = 0;
+  $handler->display->display_options['fields']['version']['alter']['external'] = 0;
+  $handler->display->display_options['fields']['version']['alter']['replace_spaces'] = 0;
+  $handler->display->display_options['fields']['version']['alter']['trim_whitespace'] = 0;
+  $handler->display->display_options['fields']['version']['alter']['nl2br'] = 0;
+  $handler->display->display_options['fields']['version']['alter']['word_boundary'] = 1;
+  $handler->display->display_options['fields']['version']['alter']['ellipsis'] = 1;
+  $handler->display->display_options['fields']['version']['alter']['strip_tags'] = 0;
+  $handler->display->display_options['fields']['version']['alter']['trim'] = 0;
+  $handler->display->display_options['fields']['version']['alter']['html'] = 0;
+  $handler->display->display_options['fields']['version']['element_label_colon'] = 1;
+  $handler->display->display_options['fields']['version']['element_default_classes'] = 1;
+  $handler->display->display_options['fields']['version']['hide_empty'] = 0;
+  $handler->display->display_options['fields']['version']['empty_zero'] = 0;
+  $handler->display->display_options['fields']['version']['hide_alter_empty'] = 1;
+  /* Sort criterion: ufa Projects: short_name */
+  $handler->display->display_options['sorts']['short_name']['id'] = 'short_name';
+  $handler->display->display_options['sorts']['short_name']['table'] = 'update_feed_api_projects';
+  $handler->display->display_options['sorts']['short_name']['field'] = 'short_name';
+  $handler->display->display_options['sorts']['short_name']['relationship'] = 'ufa_project';
   /* Filter: ufa Projects: title */
   $handler->display->display_options['filters']['title']['id'] = 'title';
   $handler->display->display_options['filters']['title']['table'] = 'update_feed_api_projects';
@@ -254,7 +313,7 @@ function _l10n_server_summary_projects() {
   $handler->display->display_options['filters']['untranslated_strings']['table'] = 'l10n_server_release';
   $handler->display->display_options['filters']['untranslated_strings']['field'] = 'untranslated_strings';
   $handler->display->display_options['filters']['untranslated_strings']['relationship'] = 'l10n_server_release_1';
-  $handler->display->display_options['filters']['untranslated_strings']['value'] = 'All';
+  $handler->display->display_options['filters']['untranslated_strings']['value'] = '1';
   $handler->display->display_options['filters']['untranslated_strings']['exposed'] = TRUE;
   $handler->display->display_options['filters']['untranslated_strings']['expose']['limit_operators'] = array();
   $handler->display->display_options['filters']['untranslated_strings']['expose']['label'] = 'Not fully translated';
@@ -273,6 +332,30 @@ function _l10n_server_summary_projects() {
   $handler->display->display_options['filters']['is_latest_recommended']['expose']['optional'] = FALSE;
   $handler->display->display_options['filters']['is_latest_recommended']['expose']['remember'] = FALSE;
   $handler->display->display_options['filters']['is_latest_recommended']['expose']['single'] = TRUE;
+  /* Filter: ufa Projects: api_version */
+  $handler->display->display_options['filters']['api_version']['id'] = 'api_version';
+  $handler->display->display_options['filters']['api_version']['table'] = 'update_feed_api_projects';
+  $handler->display->display_options['filters']['api_version']['field'] = 'api_version';
+  $handler->display->display_options['filters']['api_version']['relationship'] = 'ufa_project';
+  $handler->display->display_options['filters']['api_version']['value'] = array(
+    '6.x' => '6.x',
+    '7.x' => '7.x',
+    '8.x' => '8.x',
+  );
+  $handler->display->display_options['filters']['api_version']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['api_version']['expose']['operator'] = 'api_version_op';
+  $handler->display->display_options['filters']['api_version']['expose']['limit_operators'] = array();
+  $handler->display->display_options['filters']['api_version']['expose']['label'] = 'Drupal Version';
+  $handler->display->display_options['filters']['api_version']['expose']['identifier'] = 'api_version';
+  $handler->display->display_options['filters']['api_version']['expose']['remember'] = 1;
+  $handler->display->display_options['filters']['api_version']['expose']['reduce'] = 0;
+
+  /* Display: Page */
+  $handler = $view->new_display('page', 'Page', 'page_1');
+  $handler->display->display_options['path'] = 'translate/dashboard';
+  $handler->display->display_options['menu']['type'] = 'normal';
+  $handler->display->display_options['menu']['title'] = 'Translation Dashboard';
+  $handler->display->display_options['menu']['weight'] = '0';
   $translatables['projects'] = array(
     t('Defaults'),
     t('more'),
@@ -294,13 +377,19 @@ function _l10n_server_summary_projects() {
     t('api_version'),
     t('Rec. Major'),
     t('Rid'),
+    t('short_name'),
+    t('translate/languages/de/translate?project=[short_name]&status=1&release=[rid]'),
     t('Overall translateable strings'),
     t('Strings need translation'),
     t('Translation stats'),
     t('[view_1]/[view_2]'),
+    t('version'),
     t('Not fully translated'),
     t('True'),
+    t('Drupal Version'),
+    t('Page'),
   );
+
 
   return $view;
 }
